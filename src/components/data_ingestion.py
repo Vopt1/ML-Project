@@ -7,6 +7,9 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
+from src.components.data_transformation import DataTransformation
+from src.components.data_transformation import DataTransformationConfig
+
 @dataclass
 class DataIngestionConfig:
     train_data_path = os.path.join('artifacts',"train.csv")
@@ -21,6 +24,8 @@ class DataIngestion:
         logging.info('Starting Data Ingestion')
         try:
             df = pd.read_excel(r"Notebook\data\flight-price.xlsx")
+            df = df.dropna(axis=0)
+            df = df.drop_duplicates(keep='first')
             logging.info("Successfully Imported the dataset")
 
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path),exist_ok=True)
@@ -44,4 +49,8 @@ class DataIngestion:
         
 if __name__ == '__main__':
     obj = DataIngestion()
-    obj.InitiateDataIngestion()
+    train_data,test_data = obj.InitiateDataIngestion()
+
+    data_transformation = DataTransformation()
+    train,test,_ = data_transformation.initiate_data_transformation(train_data,test_data)
+    pd.DataFrame(test).to_csv('train_array.csv',index=False)
