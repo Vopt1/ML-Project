@@ -206,7 +206,7 @@ class Transform_datetime(BaseEstimator,TransformerMixin):
         df = df.copy()
 
         # code for transforming date of journey
-        df["Date_of_Journey"] = pd.to_datetime(df["Date_of_Journey"])
+        df["Date_of_Journey"] = pd.to_datetime(df["Date_of_Journey"],format='%d/%m/%Y',dayfirst=True)
         df['Day_of_journey']  = df['Date_of_Journey'].dt.day
         df['Month_of_journey']  = df['Date_of_Journey'].dt.month
         df['Year_of_journey']  = df['Date_of_Journey'].dt.year
