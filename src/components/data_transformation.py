@@ -206,13 +206,11 @@ class Transform_datetime(BaseEstimator,TransformerMixin):
         df = df.copy()
 
         # code for transforming date of journey
-        df['Day_of_journey']  = df[self.date_col].str.split('/').str[0]
-        df['Month_of_journey']  = df[self.date_col].str.split('/').str[1]
-        df['Year_of_journey']  = df[self.date_col].str.split('/').str[2]
-
-        df['Day_of_journey'] = df['Day_of_journey'].astype(int)
-        df['Month_of_journey'] = df['Month_of_journey'].astype(int)
-        df['Year_of_journey'] = df['Year_of_journey'].astype(int)
+        df["Date_of_Journey"] = pd.to_datetime(df["Date_of_Journey"])
+        df['Day_of_journey']  = df['Date_of_Journey'].dt.day
+        df['Month_of_journey']  = df['Date_of_Journey'].dt.month
+        df['Year_of_journey']  = df['Date_of_Journey'].dt.year
+        
         logging.info('Date of Journey transformation completed')
 
         # code for transforming departure time
