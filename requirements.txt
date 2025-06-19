@@ -5,5 +5,5 @@ matplotlib
 seaborn
 xgboost
 geopy
-optuna
+dill
 -e .
