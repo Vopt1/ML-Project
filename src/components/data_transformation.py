@@ -85,12 +85,7 @@ class DataTransformation:
             train_df=pd.read_csv(train_path)
             test_df=pd.read_csv(test_path)
 
-            train_df=train_df.drop(labels=['Route'],axis=1)
-            test_df=test_df.drop(labels=['Route'],axis=1)
-
             logging.info("Read train and test data completed")
-
-            
 
             target_column_name="Price"
 
@@ -100,13 +95,13 @@ class DataTransformation:
             input_feature_test_df=test_df.drop(columns=[target_column_name],axis=1)
             target_feature_test_df=test_df[target_column_name]
 
-            logging.info(
-                f"Applying preprocessing object on training dataframe and testing dataframe."
-            )
-
             logging.info("Obtaining preprocessing object")
 
             preprocessing_obj=self.get_data_transformer_obj()
+
+            logging.info(
+                f"Applying preprocessing object on training dataframe and testing dataframe."
+            )
             
             input_feature_train_arr=preprocessing_obj.fit_transform(input_feature_train_df)
             input_feature_test_arr=preprocessing_obj.transform(input_feature_test_df)

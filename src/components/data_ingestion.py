@@ -25,7 +25,6 @@ class DataIngestion:
         logging.info('Starting Data Ingestion')
         try:
             df = pd.read_excel(r"Notebook\data\flight-price.xlsx")
-            df = df.dropna(axis=0)
             df = df.drop_duplicates(keep='first')
             logging.info("Successfully Imported the dataset")
 
@@ -35,6 +34,8 @@ class DataIngestion:
 
             logging.info('Train test split Initiated')
             train_set,test_set = train_test_split(df,test_size=0.15,random_state=21)
+
+            logging.info('Saving train set and test set')
 
             train_set.to_csv(self.ingestion_config.train_data_path,index=False,header=True)
             test_set.to_csv(self.ingestion_config.test_data_path,index=False,header=True)
