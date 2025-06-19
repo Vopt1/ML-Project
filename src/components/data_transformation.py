@@ -243,7 +243,7 @@ class Transform_datetime(BaseEstimator,TransformerMixin):
             df.loc[i,'Duration_mins'] = duration[i].seconds //60
         logging.info('Duration transformation completed')
         return df.drop(columns=['Date_of_Journey', 'Source', 'Destination', 'Dep_Time',
-                           'Arrival_Time', 'Duration', 'Year_of_journey'], errors='ignore')
+                           'Arrival_Time', 'Duration', 'Year_of_journey','Route'], errors='ignore')
     
 class CustomTransformer(BaseEstimator,TransformerMixin):
     def __init__(self,air_col='Airline',tot='Total_Stops',Add_info='Additional_Info'):
