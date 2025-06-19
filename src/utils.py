@@ -3,6 +3,7 @@ from src.logger import logging
 import os
 import pickle
 import sys
+import dill
 
 from sklearn.metrics import r2_score
 from sklearn.model_selection import GridSearchCV
@@ -14,19 +15,29 @@ import pandas as pd
 def save_object(file_path, obj):
     try:
         dir_path = os.path.dirname(file_path)
-
         os.makedirs(dir_path, exist_ok=True)
 
+        if obj is None:
+            raise ValueError("Cannot save None object!")
+            
+        try:
+            _ = dill.dumps(obj)
+        except Exception as e:
+            raise ValueError(f"Object not serializable: {str(e)}")
+
         with open(file_path, "wb") as file_obj:
-            pickle.dump(obj, file_obj)
+            dill.dump(obj, file_obj)
+            
+        if os.path.getsize(file_path) == 0:
+            os.remove(file_path)
+            raise RuntimeError("Saved file is empty!")
 
     except Exception as e:
         raise CustomException(e, sys)
     
 def model_evalute(X_train:Union[np.ndarray,pd.DataFrame],y_train:Union[np.ndarray,pd.DataFrame],
                   X_test:Union[np.ndarray,pd.DataFrame],y_test:Union[np.ndarray,pd.DataFrame],
-                  models_params:Dict[str,Dict[Any,Any]],verbose:bool = False):
-        
+                  models_params:Dict[str,Dict[Any,Any]],verbose:bool = False):  
     try:
         report = {}
 
@@ -48,3 +59,21 @@ def model_evalute(X_train:Union[np.ndarray,pd.DataFrame],y_train:Union[np.ndarra
     except Exception as e:
         logging.info(f'{e} error in utils evaluate during model evaluation')
         raise CustomException(e,sys)
+    
+def load_object(file_path):
+    try:
+        if not os.path.exists(file_path):
+            raise FileNotFoundError(f"{file_path} does not exist")
+            
+        if os.path.getsize(file_path) == 0:
+            raise ValueError("File is empty")
+            
+        with open(file_path, "rb") as file_obj:
+            obj = dill.load(file_obj)
+            
+        if obj is None:
+            raise ValueError("Loaded None object")
+            
+        return obj
+    except Exception as e:
+        raise CustomException(e, sys)

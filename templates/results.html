@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/predict.css') }}">
+</head>
+<body>
+
+    <div class="result-container">
+        <h1>Prediction Complete</h1>
+        <p>This is the predicted flight price:</p>
+        <p>₹ {{ result }}</p>
+        <a class="back-button" href="/">Go Home</a>
+        <a class="back-button" href="/predict">Make another Prediction</a>
+    </div>
+
+</body>
+</html>

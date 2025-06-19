@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flight Details Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/general.css') }}">
+</head>
+
+
+<body>
+
+    <h2>Flight Information Form</h2>
+    <form action="{{ url_for('predict_datapoint')}}" method="post">
+
+        <label for="airline">Airline</label>
+        <select id="airline" name="airline" required>
+            <option>IndiGo</option>
+            <option>Air India</option>
+            <option>SpiceJet</option>
+            <option>Vistara</option>
+            <option>Vistara Premium economy</option>
+            <option>Jet Airways</option>
+            <option>Jet Airways Business</option>
+            <option>Trujet</option>
+            <option>GoAir</option>
+            <option>Air Asia</option>
+            <option>Multiple carriers Premium economy</option>
+            <option>Multiple carriers</option>
+        </select>
+
+        <label for="date_of_journey">Date of Journey</label>
+        <input type="date" id="date_of_journey" name="date_of_journey" required>
+
+        <label for="source">Source</label>
+        <select id="source" name="source" required>
+            <option>New Delhi</option>
+            <option>Bangalore</option>
+            <option>Kolkata</option>
+            <option>Mumbai</option>
+            <option>Chennai</option>
+        </select>
+
+        <label for="destination">Destination</label>
+        <select id="destination" name="destination" required>
+            <option>Bangalore</option>
+            <option>New Delhi</option>
+            <option>Cochin</option>
+            <option>Hyderabad</option>
+            <option>Kolkata</option>
+        </select>
+
+        <label for="dep_time">Departure Time</label>
+        <input type="time" id="dep_time" name="dep_time" required>
+
+        <label for="arrival_time">Arrival Time</label>
+        <input type="time" id="arrival_time" name="arrival_time" required>
+
+        <label for="duration">Duration</label>
+        <input type="text" id="duration" name="duration" placeholder="e.g., 2h 50m" required>
+
+        <label for="total_stops">Total Stops</label>
+        <select id="total_stops" name="total_stops" required>
+            <option>non-stop</option>
+            <option>1 stop</option>
+            <option>2 stops</option>
+            <option>3 stops</option>
+            <option>4 stops</option>
+        </select>
+
+        <label for="Additional_Info">Additional Info</label>
+        <select id="Additional_Info" name="Additional_Info" required>
+            <option>No info</option>
+            <option>In-flight meal not included</option>
+            <option>No check-in baggage included</option>
+            <option>1 Short layover</option>
+            <option>1 Long layover</option>
+            <option>Change airports</option>
+            <option>2 Long layover</option>
+            <option>Red-eye flight</option>
+            <option>Business class</option>
+        </select>
+
+        <button type="submit">Get Price</button>
+    </form>
+
+</body>
+</html>

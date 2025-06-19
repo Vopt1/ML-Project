@@ -56,6 +56,7 @@ if __name__ == '__main__':
 
     data_transformation = DataTransformation()
     train,test,_ = data_transformation.initiate_data_transformation(train_data,test_data)
+    # pd.DataFrame(train).to_csv('train.csv')
     
     modeltrainer = ModelTrainer()
     print(modeltrainer.initiate_model_trainer(train,test))
