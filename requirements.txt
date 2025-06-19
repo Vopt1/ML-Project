@@ -6,4 +6,5 @@ seaborn
 xgboost
 geopy
 dill
+flask
 -e .
