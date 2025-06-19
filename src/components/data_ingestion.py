@@ -25,6 +25,7 @@ class DataIngestion:
         logging.info('Starting Data Ingestion')
         try:
             df = pd.read_excel(r"Notebook\data\flight-price.xlsx")
+            df = df.dropna(axis=0)
             df = df.drop_duplicates(keep='first')
             logging.info("Successfully Imported the dataset")
 
