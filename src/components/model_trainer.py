@@ -89,7 +89,7 @@ class ModelTrainer:
                         'subsample':[0.8],
                         'random_state':[45],
                         'colsample_bytree':[0.9],
-                        'minimum_child_weight':[1,2]
+                        'min_child_weight':[1,2]
                     }
                 }
             }
