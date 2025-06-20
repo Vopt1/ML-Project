@@ -1,0 +1,39 @@
+[project]
+name = "flight-price-predictor"
+version = "0.0.1"
+description = "A Flask-based machine learning app to predict flight prices"
+authors = [
+  { name = "Vatsalya", email = "vatsalyabrahmatmaj2@gmail.com" }
+]
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+  "flask",
+  "pandas",
+  "scikit-learn",
+  "numpy",
+  "matplotlib",
+  "seaborn",
+  "xgboost",
+  "geopy",
+  "dill"
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+exclude = ["tests*"]
+
+[tool.setuptools.package-data]
+# If you use any data files (e.g. pkl or json inside packages), list them like:
+# "your_package_name" = ["*.pkl", "*.json"]
+
+[tool.setuptools.exclude-package-data]
+# optionally exclude anything here
+

@@ -15,16 +15,16 @@ from src.components.model_trainer import ModelTrainer
 class DataIngestionConfig:
     train_data_path = os.path.join('artifacts',"train.csv")
     test_data_path = os.path.join('artifacts',"test.csv")
-    raw_data_path = os.path.join('artifacts',"data.xlsx")
+    raw_data_path = os.path.join('artifacts',"data.csv")
 
 class DataIngestion:
     def __init__(self):
         self.ingestion_config = DataIngestionConfig()
 
-    def InitiateDataIngestion(self):
+    def InitiateDataIngestion(self,data_path):
         logging.info('Starting Data Ingestion')
         try:
-            df = pd.read_excel(r"Notebook\data\flight-price.xlsx")
+            df = pd.read_csv(data_path)
             df = df.dropna(axis=0)
             df = df.drop_duplicates(keep='first')
             logging.info("Successfully Imported the dataset")

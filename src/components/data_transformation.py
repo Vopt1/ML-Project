@@ -84,7 +84,6 @@ class DataTransformation:
             
             input_feature_train_arr=preprocessing_obj.fit_transform(input_feature_train_df)
             logging.info("Training data transformed")
-            logging.error(f'{hasattr(preprocessing_obj, '_is_fitted')}')
             input_feature_test_arr=preprocessing_obj.transform(input_feature_test_df)
 
             input_feature_test_df.to_csv('train.csv',index=False)

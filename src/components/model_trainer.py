@@ -12,6 +12,8 @@ from sklearn.tree import DecisionTreeRegressor,ExtraTreeRegressor
 from sklearn.ensemble import RandomForestRegressor,AdaBoostRegressor,GradientBoostingRegressor
 from xgboost import XGBRegressor
 from sklearn.metrics import r2_score
+import warnings
+warnings.filterwarnings('ignore')
 
 @dataclass
 class ModelTrainerConfig:

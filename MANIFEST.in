@@ -1,0 +1,9 @@
+include app.py
+
+recursive-include templates *
+
+recursive-include static *
+
+include README.md
+
+include pyproject.toml
