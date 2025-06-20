@@ -49,14 +49,3 @@ class DataIngestion:
             )
         except Exception as e:
             raise CustomException(e,sys)  
-        
-if __name__ == '__main__':
-    obj = DataIngestion()
-    train_data,test_data = obj.InitiateDataIngestion()
-
-    data_transformation = DataTransformation()
-    train,test,_ = data_transformation.initiate_data_transformation(train_data,test_data)
-    # pd.DataFrame(train).to_csv('train.csv')
-    
-    modeltrainer = ModelTrainer()
-    print(modeltrainer.initiate_model_trainer(train,test))
