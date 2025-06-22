@@ -3,15 +3,14 @@ import sys
 
 from src.exception import CustomException
 from src.logger import logging
-from src.utils import save_object,model_evalute
+from src.utils import save_object,ModelEvaluation
 
 from dataclasses import dataclass
 
 from sklearn.linear_model import LinearRegression,Ridge,Lasso
-from sklearn.tree import DecisionTreeRegressor,ExtraTreeRegressor
+from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor,AdaBoostRegressor,GradientBoostingRegressor
 from xgboost import XGBRegressor
-from sklearn.metrics import r2_score
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -96,7 +95,8 @@ class ModelTrainer:
                 }
             }
 
-            model_report:dict=model_evalute(X_train=X_train,y_train=y_train,X_test=X_test,y_test=y_test,models_params=models)
+            model_evaluater = ModelEvaluation()
+            model_report:dict=model_evaluater.model_evalute(X_train=X_train,y_train=y_train,X_test=X_test,y_test=y_test,models_params=models)
 
             best_model_name = max(model_report, key=lambda k: model_report[k]['score'])
             best_model_info = model_report[best_model_name]
