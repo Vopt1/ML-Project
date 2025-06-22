@@ -21,17 +21,17 @@ class TrainPipeline:
             else:
                 print('Either file path incorrect or file does not exist\nCheck and reenter')
         
-        print('Beiginning Data Ingestion')
+        print('Beginning Data Ingestion')
         obj = DataIngestion()
         train_data,test_data = obj.InitiateDataIngestion(file_path)
         print('Data Ingestion completed')
 
-        print('Beiginning Data Transformations')
+        print('Beginning Data Transformations')
         data_transformation = DataTransformation()
         train,test,_ = data_transformation.initiate_data_transformation(train_data,test_data)
         print('Data Transformations Completed')
 
-        print('Beiginning Model Selection and training')
+        print('Beginning Model Selection and training')
         modeltrainer = ModelTrainer()
         print(f'The best score was: {modeltrainer.initiate_model_trainer(train,test)}')
         print('Model Selection and training completed and models saved')
