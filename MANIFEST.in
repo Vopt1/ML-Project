@@ -1,9 +1,10 @@
 include app.py
-
 recursive-include templates *
-
 recursive-include static *
-
 include README.md
-
 include pyproject.toml
+
+recursive-exclude artifacts *
+recursive-exclude Flight_Price_Predictor.egg-info *
+recursive-exclude logs *
+recursive-exclude venv *
