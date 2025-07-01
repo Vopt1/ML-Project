@@ -160,7 +160,9 @@ Flight ticket prices fluctuate frequently based on various factors, making it ch
         - R2 score:  0.931
         - root mean squred error:  1259.341
 
-🖥 Framework
+---
+
+## 🖥 Framework
 - Frontend: HTML, CSS, Flask
 
 - Backend: Python (model training, preprocessing, prediction pipeline)
